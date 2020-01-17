@@ -22,12 +22,22 @@ const Posts: NextPage<Props> = ({ posts = [] }) => {
   );
 };
 
-export async function unsafe_getServerProps(ctx) {
-  return { props: { posts: [] } };
-}
+Posts.getInitialProps = async ctx => {
+  const { Photon } = await import("@prisma/photon");
+  const photon = new Photon();
+  return { posts: await photon.posts() };
+};
 
-export async function unsafe_getStaticProps(ctx) {
-  return { props: { posts: [] } };
-}
+// export async function unsafe_getServerProps(ctx) {
+//   const { Photon } = await import("@prisma/photon");
+//   const photon = new Photon();
+//   return { props: { posts: await photon.posts() } };
+// }
+
+// export async function unsafe_getStaticProps(ctx) {
+//   const { Photon } = await import("@prisma/photon");
+//   const photon = new Photon();
+//   return { props: { posts: await photon.posts() } };
+// }
 
 export default Posts;
