@@ -1,9 +1,4 @@
-import {
-  ApolloServer,
-  makeExecutableSchema,
-  gql,
-  ApolloError
-} from "apollo-server-micro";
+import { ApolloServer, makeExecutableSchema, gql } from "apollo-server-micro";
 import { Photon, User } from "@prisma/photon";
 
 export const config = {
@@ -27,10 +22,8 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     hello: () => "Hello",
-    posts: async (_: void, __: void, { photon }: Context) => {
-      console.log(photon);
-      return photon.posts({ where: { published: true } });
-    }
+    posts: async (_: void, __: void, { photon }: Context) =>
+      photon.posts({ where: { published: true } })
   }
 };
 
