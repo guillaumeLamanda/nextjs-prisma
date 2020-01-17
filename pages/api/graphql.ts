@@ -38,7 +38,6 @@ const context = (): Context => ({
 });
 
 const server = new ApolloServer({
-  cacheControl: true,
   context,
   schema: makeExecutableSchema({
     typeDefs,
