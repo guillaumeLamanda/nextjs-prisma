@@ -1,5 +1,5 @@
 import { ApolloServer, makeExecutableSchema, gql } from "apollo-server-micro";
-import { Photon, User } from "@prisma/photon";
+import { PrismaClient, User, Post } from "@prisma/client";
 
 export const config = {
   api: {
@@ -22,18 +22,18 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     hello: () => "Hello",
-    posts: async (_: void, __: void, { photon }: Context) =>
-      photon.posts({ where: { published: true } })
+    posts: async (_: void, __: void, { prismaClient }: Context) =>
+      prismaClient.posts({ where: { published: true } })
   }
 };
 
 type Context = {
-  photon: Photon;
+  prismaClient: PrismaClient;
   user: Partial<User> | undefined;
 };
 
 const context = (): Context => ({
-  photon: new Photon(),
+  prismaClient: new PrismaClient(),
   user: undefined
 });
 
