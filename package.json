@@ -10,9 +10,12 @@
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next start",
-    "prisma:dev": "prisma2 dev",
-    "prisma:generate": "prisma2 generate",
-    "prebuild": "yarn prisma:generate"
+    "db:migrate:up": "prisma2 migrate up --experimental",
+    "db:migrate:down": "prisma2 migrate down --experimental",
+    "db:migrate:save": "prisma2 migrate save --experimental",
+    "db:generate": "prisma2 generate",
+    "db:studio": "prisma2 studio --experimental",
+    "prebuild": "yarn db:generate"
   },
   "dependencies": {
     "@prisma/client": "^2.0.0-preview021",
