@@ -1,9 +1,10 @@
 import React from "react";
 import { NextPage } from "next";
+import Link from "next/link";
 import { Post } from "@prisma/client";
-import Nav from "../components/nav";
 import useSWR from "swr";
-import { graphqlFetcher } from "../lib";
+import Nav from "../../components/nav";
+import { graphqlFetcher } from "../../lib";
 
 type Props = {
   posts: Post[];
@@ -14,6 +15,7 @@ const query = `
     posts {
       id
       title
+      slug
     }
   }
 `;
@@ -32,7 +34,11 @@ const Posts: NextPage<Props> = ({ posts: initialPosts }) => {
       <h1>Posts list</h1>
       <ul>
         {posts.map(post => (
-          <li key={post.id}>{post.title}</li>
+          <li key={post.id}>
+            <Link href={"/posts/[slug]"} as={`/posts/${post.slug}`}>
+              <a>{post.title}</a>
+            </Link>
+          </li>
         ))}
       </ul>
     </div>
@@ -46,8 +52,6 @@ const Posts: NextPage<Props> = ({ posts: initialPosts }) => {
 Posts.getInitialProps = async ({ req }) => {
   const { request } = await import("graphql-request");
   const data = await request(`http://localhost:3000/api/graphql`, query);
-  console.log(data);
-
   return { posts: await data.posts };
 };
 

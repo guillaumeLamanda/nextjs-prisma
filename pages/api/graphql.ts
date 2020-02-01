@@ -11,11 +11,13 @@ const typeDefs = gql`
   type Post {
     id: ID
     title: String
+    slug: String
   }
 
   type Query {
     hello: String
-    posts: [Post]
+    posts: [Post!]!
+    post(slug: String!): Post!
   }
 `;
 
@@ -23,7 +25,9 @@ const resolvers = {
   Query: {
     hello: () => "Hello",
     posts: async (_: void, __: void, { prismaClient }: Context) =>
-      prismaClient.posts({ where: { published: true } })
+      prismaClient.post.findMany({ where: { published: true } }),
+    post: async (_: void, { slug }, { prismaClient }: Context) =>
+      prismaClient.post.findOne({ where: { slug } })
   }
 };
 
