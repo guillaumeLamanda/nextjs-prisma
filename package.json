@@ -15,7 +15,7 @@
     "prebuild": "yarn prisma:generate"
   },
   "dependencies": {
-    "@prisma/client": "^2.0.0-preview020.3",
+    "@prisma/client": "^2.0.0-preview021",
     "@prisma/photon": "2.0.0-preview019",
     "apollo-server-micro": "^2.9.16",
     "gql": "^1.1.2",
@@ -27,9 +27,9 @@
     "swr": "^0.1.16"
   },
   "devDependencies": {
-    "@types/node": "^13.5.0",
+    "@types/node": "^13.7.0",
     "@types/react": "^16.9.19",
-    "prisma2": "2.0.0-preview020.3",
+    "prisma2": "2.0.0-preview021",
     "ts-node": "8.6.2",
     "typescript": "3.7.5"
   }
