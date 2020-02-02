@@ -2,6 +2,9 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// It miss a good way to switch datasource based on environment
+// https://github.com/prisma/prisma2/blob/master/docs/prisma-schema-file.md#data-sources
+
 datasource db {
   provider = "sqlite"
   url      = "file:dev.db"
