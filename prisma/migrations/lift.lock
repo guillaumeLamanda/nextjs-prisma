@@ -4,3 +4,5 @@
 # Read more about conflict resolution here: TODO
 
 20200201192233-add-post-slug
+20200202122909-user-id-as-string-cuid
+20200202123124-post-id-as-string
