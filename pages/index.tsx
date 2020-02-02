@@ -1,8 +1,9 @@
 import React from "react";
 import Head from "next/head";
+import { NextPage } from "next";
 import Nav from "../components/nav";
 
-const Home = () => (
+const Home: NextPage = () => (
   <div>
     <Head>
       <title>Home</title>
@@ -84,5 +85,33 @@ const Home = () => (
     `}</style>
   </div>
 );
+
+// pages/index.js
+
+// getServerProps is only called server-side
+// In theory you could do direct database queries
+export async function unsafe_getServerProps() {
+  console.log("getserver");
+  return {
+    // Unlike `getInitialProps` the props are returned under a props key
+    // The reasoning behind this is that there's potentially more options
+    // that will be introduced in the future.
+    // For example to allow you to further control behavior per-page.
+
+    props: {}
+  };
+}
+
+export async function unsafe_getStaticProps() {
+  console.log("getstatic");
+  return {
+    // Unlike `getInitialProps` the props are returned under a props key
+    // The reasoning behind this is that there's potentially more options
+    // that will be introduced in the future.
+    // For example to allow you to further control behavior per-page.
+
+    props: {}
+  };
+}
 
 export default Home;

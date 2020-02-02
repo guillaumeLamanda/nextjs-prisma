@@ -5,6 +5,7 @@ import { Post } from "@prisma/client";
 import useSWR from "swr";
 import Nav from "../../components/nav";
 import { graphqlFetcher } from "../../lib";
+import { IncomingMessage } from "http";
 
 type Props = {
   posts: Post[];
@@ -45,13 +46,22 @@ const Posts: NextPage<Props> = ({ posts: initialPosts }) => {
   );
 };
 
+const getHost = req => req?.headers.host || req?.headers.location;
+
+const getUrl = (req: IncomingMessage) => {
+  const protocol = req?.headers.referer.includes("https") ? "https" : "http";
+  const host = getHost(req);
+  return host ? `${protocol}://${getHost(req)}` : "";
+};
+
 /**
  * See SWR Server Render example
  * @see https://github.com/zeit/swr/tree/master/examples/server-render
  */
 Posts.getInitialProps = async ({ req }) => {
+  console.log(getUrl(req));
   const { request } = await import("graphql-request");
-  const data = await request(`http://localhost:3000/api/graphql`, query);
+  const data = await request(`${getUrl(req)}/api/graphql`, query);
   return { posts: await data.posts };
 };
 
@@ -64,13 +74,19 @@ Posts.getInitialProps = async ({ req }) => {
 // export async function unsafe_getServerProps(ctx) {
 //   const { PrismaClient } = await import("@prisma/client");
 //   const client = new PrismaClient();
-//   return { props: { posts: await client.posts() } };
+//   const posts = await client.post.findMany({ where: { published: true } });
+//   return {
+//     props: { posts }
+//   };
 // }
 
 // export async function unsafe_getStaticProps(ctx) {
 //   const { PrismaClient } = await import("@prisma/client");
 //   const client = new PrismaClient();
-//   return { props: { posts: await client.posts() } };
+//   const posts = await client.post.findMany({ where: { published: true } });
+//   return {
+//     props: { posts }
+//   };
 // }
 
 export default Posts;
