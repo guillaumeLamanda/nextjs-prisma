@@ -12,7 +12,8 @@ export const server = new ApolloServer({
   schema: makeExecutableSchema({
     typeDefs,
     resolvers
-  })
+  }),
+  playground: true
 });
 
 export default server.createHandler({
