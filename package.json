@@ -18,25 +18,25 @@
     "prebuild": "yarn db:generate"
   },
   "dependencies": {
-    "@prisma/client": "2.0.0-preview022",
+    "@prisma/client": "2.0.0-preview023",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",
     "apollo-link-schema": "^1.2.4",
-    "apollo-server-micro": "^2.10.1",
+    "apollo-server-micro": "^2.11.0",
     "gql": "^1.1.2",
     "graphql-request": "^1.8.2",
     "graphql-tools": "^4.0.7",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "9.2.3-canary.10",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
-    "swr": "^0.1.17"
+    "next": "9.3.0",
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
+    "swr": "^0.1.18"
   },
   "devDependencies": {
-    "@types/node": "^13.7.4",
-    "@types/react": "^16.9.21",
-    "prisma2": "2.0.0-preview022",
+    "@types/node": "^13.9.0",
+    "@types/react": "^16.9.23",
+    "prisma2": "2.0.0-preview023",
     "ts-node": "8.6.2",
-    "typescript": "3.8.2"
+    "typescript": "3.8.3"
   }
 }
