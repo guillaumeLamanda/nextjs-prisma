@@ -18,16 +18,16 @@
     "prebuild": "yarn db:generate"
   },
   "dependencies": {
-    "@prisma/client": "2.0.0-preview023",
+    "@prisma/client": "2.0.0-preview025",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "9.3.0",
-    "react": "16.13.0",
-    "react-dom": "16.13.0"
+    "next": "9.3.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
   },
   "devDependencies": {
+    "@prisma/cli": "^2.0.0-preview025",
     "@types/node": "^13.9.0",
     "@types/react": "^16.9.23",
-    "prisma2": "2.0.0-preview023",
     "ts-node": "8.6.2",
     "typescript": "3.8.3"
   }
